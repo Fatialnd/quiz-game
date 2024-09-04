@@ -20,7 +20,19 @@ import { createProgressBarElement } from '../views/progressBarView.js';
 export let currentScore = Number(localStorage.getItem('currentScore')) || 0;
 let answersLS = JSON.parse(localStorage.getItem(`selected`)) || {};
 
+const shuffleArray = (array) => {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+};
+
 export const initQuestionPage = () => {
+
+  if (quizData.currentQuestionIndex === 0) {
+    shuffleArray(quizData.questions);
+  }
+
   localStorage.setItem('currentQuestion', quizData.currentQuestionIndex);
 
   const userInterface = document.getElementById(USER_INTERFACE_ID);
