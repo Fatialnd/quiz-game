@@ -28,7 +28,6 @@ const shuffleArray = (array) => {
 };
 
 export const initQuestionPage = () => {
-
   if (quizData.currentQuestionIndex === 0) {
     shuffleArray(quizData.questions);
   }
